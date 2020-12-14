@@ -35,9 +35,9 @@ try:
         draw2 = ImageDraw.Draw(sertifikat)
         draw2.text(xy=(190,550),text=f'#12132020{ID}',fill=(66, 66, 66), font=font_type) #Koordinate Dan Warna Font
 
-        #SAVE ID
-        file = open('validasi_sertifikat.txt','a')
-        file.write(f'{nama};12132020{ID}\n')
+        #SAVE ID TO MYSQL
+        file = open('validasi_sertifikat.csv','a')
+        file.write(f'12132020{ID};{nama};Turnamen Mobile Legend\n') #FORMAT ID,NAMA,GENRE
         file.close
         
         sertifikat.save(f'assets/SERTIFIKAT_PESERTA/{nama}.pdf')  #Tempat File Disimpan
