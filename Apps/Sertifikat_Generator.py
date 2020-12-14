@@ -5,6 +5,7 @@ Github    : https://github.com/mchevro
 '''
 from PIL import Image, ImageFont, ImageDraw
 import random
+import datetime
 
 print("SERTIFIKAT GENERATOR\n\n")
 
@@ -23,10 +24,10 @@ try:
         list_nama.append(x.strip())
 
     for nama in list_nama:
-        sertifikat = Image.open('assets/template.jpg') #Template Sertifikat 
+        sertifikat = Image.open('/Users/Mahendra Chevro/Documents/Bahasa Program/Python/PYTHON-SertifikatGenerator/Apps/assets/template.jpg') #Template Sertifikat 
 
         #CETAK NAMA PESERTA
-        font_type = ImageFont.truetype('assets/Raleway-Light.ttf',150) #Jenis Font Sertifikat
+        font_type = ImageFont.truetype('/Users/Mahendra Chevro/Documents/Bahasa Program/Python/PYTHON-SertifikatGenerator/Apps/assets/Raleway-Light.ttf',150) #Jenis Font Sertifikat
         draw = ImageDraw.Draw(sertifikat)
         draw.text(xy=(190,850),text=nama,fill=(66, 66, 66), font=font_type) #Koordinate Dan Warna Font
 
@@ -36,11 +37,12 @@ try:
         draw2.text(xy=(190,550),text=f'#12132020{ID}',fill=(66, 66, 66), font=font_type) #Koordinate Dan Warna Font
 
         #SAVE ID TO MYSQL
-        file = open('validasi_sertifikat.csv','a')
-        file.write(f'12132020{ID};{nama};Turnamen Mobile Legend\n') #FORMAT ID,NAMA,GENRE
+        DATE = datetime.datetime.now()
+        file = open('/Users/Mahendra Chevro/Documents/Bahasa Program/Python/PYTHON-SertifikatGenerator/Apps/validasi_sertifikat.csv','a')
+        file.write(f'12132020{ID};{nama};Turnamen Mobile Legend;{DATE.strftime("%Y-%m-%d")}\n') #FORMAT ID,NAMA,GENRE,TANGGAL
         file.close
         
-        sertifikat.save(f'assets/SERTIFIKAT_PESERTA/{nama}.pdf')  #Tempat File Disimpan
+        sertifikat.save(f'/Users/Mahendra Chevro/Documents/Bahasa Program/Python/PYTHON-SertifikatGenerator/Apps/assets/SERTIFIKAT_PESERTA/{nama}.pdf')  #Tempat File Disimpan
         print(f'Selesai {nama}')
 
 except KeyboardInterrupt:
